@@ -27,23 +27,7 @@ export const consulta = (sql, valores = '', mensagemresject) => {
 
             if(erro) return reject(mensagemresject)
             const row = JSON.parse(JSON.stringify(resposta))
-
-            const response = {
-                quantidade: row.length,
-                produtos: row.map(prod => {
-                    return{
-                        id_produto: prod.id_produto,
-                        nome: prod.nome,
-                        preco: prod.preco,
-                        request:{
-                            tipo: "GET",
-                            descricao: '',
-                            url: 'http:localhost:3000/produto/'+prod.id_produto
-                        }
-                    }
-                })
-            }
-            return resolve(response)
+            return resolve(row)
         })
     })
 }
