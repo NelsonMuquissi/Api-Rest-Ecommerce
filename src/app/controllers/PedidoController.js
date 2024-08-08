@@ -1,3 +1,5 @@
+import PedidosRepository from "../repositories/PedidosRepository.js";
+
 class PedidoController {
   async index(req, res) {
     const row = await PedidosRepository.findAll();
@@ -12,7 +14,7 @@ class PedidoController {
           request: {
             tipo: "GET",
             descricao: "Retorna os detalhes de cada pedido",
-            url: "http://localhost:3000/pedido/" + prod.id_produto,
+            url: "http://localhost:3000/pedido/" + pedid.id_produto,
           },
         };
       }),
@@ -48,7 +50,7 @@ class PedidoController {
 
   async store(req, res) {
     const pedido = req.body;
-    const row = await PedidoRepository.create(pedido);
+    const row = await PedidosRepository.create(pedido);
 
     const response = {
       mensagem: "Pedido solicitado com sucesso",
@@ -68,7 +70,7 @@ class PedidoController {
 
   async updade(req, res) {
     const id = req.params.id;
-    const produto = req.body;
+    const pedido = req.body;
     const row = await PedidosRepository.update(pedido, id);
 
     if (row.length == 0) {

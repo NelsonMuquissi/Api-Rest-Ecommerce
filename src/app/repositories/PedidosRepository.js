@@ -1,9 +1,9 @@
-import conexao from "../database/conexao.js";
+import conexao, {consulta} from "../database/conexao.js";
 
 class PedidosRepository {
-  create(produto) {
+  create(pedido) {
     const sql = "INSERT INTO pedidos SET ?";
-    return consulta(sql, produto, "Não foi possível cadastrar");
+    return consulta(sql, pedido, "Não foi possível cadastrar");
   }
 
   findAll() {
@@ -16,7 +16,7 @@ class PedidosRepository {
     return consulta(sql, id, "Não foi possivel localizar o pedidos");
   }
 
-  update(produto, id) {
+  update(pedido, id) {
     const sql = "UPDATE pedidos SET ? WHERE id_pedido = ?";
     return consulta(sql, [pedido, id], "Não foi possível atualizar");
   }
