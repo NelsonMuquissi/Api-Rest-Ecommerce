@@ -5,7 +5,7 @@ import PedidoController from "../app/controllers/PedidoController.js";
 
 const router = Router()
 
-//Rotas do Produtos
+//Rotas dos Produtos
 router.get('/produto', ProdutoController.index)
 router.get("/produto/:id", ProdutoController.show);
 router.post("/produto", ProdutoController.store);
@@ -13,7 +13,7 @@ router.put("/produto/:id", ProdutoController.updade);
 router.delete("/produto/:id", ProdutoController.delete);
 
 
-// Rotas do pedidos
+// Rotas dos pedidos
 router.get("/pedido", PedidoController.index);
 router.get("/pedido/:id", PedidoController.show);
 router.post("/pedido", PedidoController.store);

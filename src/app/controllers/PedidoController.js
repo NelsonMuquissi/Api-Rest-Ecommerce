@@ -5,12 +5,15 @@ class PedidoController {
     const row = await PedidosRepository.findAll();
 
     const response = {
-      quantidade: row.length,
-      produtos: row.map((pedid) => {
+      pedidos: row.map((pedid) => {
         return {
           id_pedido: pedid.id_pedido,
-          id_produto: pedid.id_produto,
           quantidade: pedid.quantidade,
+          produto:{
+            id_produto: pedid.id_produto,
+            nome: pedid.nome,
+            preco: pedid.preco
+          },
           request: {
             tipo: "GET",
             descricao: "Retorna os detalhes de cada pedido",
@@ -22,6 +25,7 @@ class PedidoController {
 
     res.json(response);
   }
+
 
   async show(req, res) {
     const id = req.params.id;
@@ -95,6 +99,7 @@ class PedidoController {
     res.json(response);
   }
 
+  
   async delete(req, res) {
     const id = req.params.id;
     const row = await PedidosRepository.delete(id);

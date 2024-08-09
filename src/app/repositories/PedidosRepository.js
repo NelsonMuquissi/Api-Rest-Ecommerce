@@ -1,14 +1,24 @@
 import conexao, {consulta} from "../database/conexao.js";
 
 class PedidosRepository {
+  
   create(pedido) {
     const sql = "INSERT INTO pedidos SET ?";
     return consulta(sql, pedido, "Não foi possível cadastrar");
   }
 
   findAll() {
-    const sql = "SELECT *FROM pedidos";
-    return consulta(sql, "pedidos não encontrao");
+
+    const sql = `select pedidos.id_pedido
+                    ,pedidos.quantidade
+                    ,pedidos.id_produto
+                    ,produtos.nome
+                    ,produtos.preco
+            	From pedidos
+          	INNER JOIN produtos
+          		on pedidos.id_produto = produtos.id_produto`;
+
+    return consulta(sql, "pedidos não encontrados");
   }
 
   findById(id) {
