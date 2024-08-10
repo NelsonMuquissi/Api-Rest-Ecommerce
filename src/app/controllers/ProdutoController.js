@@ -1,5 +1,6 @@
 import ProdutoRepository from "../repositories/ProdutoRepository.js";
 
+
 class ProdutoController {
 
   async index(req, res) {
@@ -12,6 +13,7 @@ class ProdutoController {
           id_produto: prod.id_produto,
           nome: prod.nome,
           preco: prod.preco,
+          produto_imagem: prod.imagem_produto,
           request: {
             tipo: "GET",
             descricao: "Retorna os detalhes de cada produto",
@@ -38,6 +40,7 @@ class ProdutoController {
            id_produto: row[0].id_produto,
            nome: row[0].nome,
            preco: row[0].preco,
+           produto_imagem: row[0].imagem_produto,
            request: {
              tipo: "GET",
              descricao: "Retorna um produto",
@@ -51,14 +54,17 @@ class ProdutoController {
 
   async store(req, res) {
     const produto = req.body
-    const row = await ProdutoRepository.create(produto)
-
+    const imagem = req.file.path;
+    
+    const row = await ProdutoRepository.create(produto,imagem)
+ 
     const response = {
       mensagem: "Produto Inserido com sucesso",
       ProdutoCriado: {
         id_produto: req.body.id_produto,
         nome: req.body.nome,
         preco: req.body.preco,
+        imagem_produto: req.file.path,
         request: {
           tipo: "POST",
           descricao: "Inserir um produto",

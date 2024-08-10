@@ -16,7 +16,7 @@ conexao.connect((error) => {
 /**
  * Executa um código SQL com ou sem valor
  * @param {string} sql instrucao SQL a ser executada
- * @param {string=id | [id selecao]} valores a serem passados pela SQL
+ * @param {string=id | [id produto imagem]} valores a serem passados pela SQL
  * @param {*} mensagwmresject mensagem a ser exibida
  * @returns Objecto da promisse
  */

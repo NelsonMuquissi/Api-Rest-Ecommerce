@@ -4,6 +4,9 @@ import router from './routes/routes.js'
 // Iiniciando o espress
 const app = express()
 
+
+// Definindo uma rota pública para as imagens
+app.use('/uploads', express.static('uploads'))
 // Informando que vamos usar body JSON
 app.use(express.json())
 

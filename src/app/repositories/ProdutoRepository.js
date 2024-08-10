@@ -2,9 +2,10 @@ import conexao, {consulta} from "../database/conexao.js"
 
 class ProdutoRepository{
 
-    create(produto){
-        const sql = "INSERT INTO produtos SET ?"
-        return consulta(sql, produto, "Não foi possível cadastrar");
+    create(produto,imagem){
+        const sql = "INSERT INTO produtos (nome, preco, imagem_produto) values (?,?,?)"
+      
+        return consulta(sql, [produto.nome,produto.preco,imagem], "Não foi possível cadastrar");
     }
 
     findAll(){
