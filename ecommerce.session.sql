@@ -1,3 +1,1 @@
-select *from produtos;
-
-describe produtos;
+select *from usuario;
