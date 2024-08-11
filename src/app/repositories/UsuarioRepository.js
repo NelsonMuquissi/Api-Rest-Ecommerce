@@ -7,7 +7,6 @@ class UsuarioRepository{
       return consulta(newSql, email, "Não foi possível encontrar")
     }
 
-
     create(usuario){
         bcrypt.hash(usuario.senha, 10, (errorCrypt, hash) => {
           if (errorCrypt) return { Erro: errorCrypt };

@@ -60,4 +60,8 @@ router.delete("/pedido/:id", PedidoController.delete);
 router.post('/usuario', ControllerUsuario.store)
 
 
+// Rota Login
+
+router.post('/login', ControllerUsuario.login)
+
 export default router

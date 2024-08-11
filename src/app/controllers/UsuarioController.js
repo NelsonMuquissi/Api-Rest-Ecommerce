@@ -1,4 +1,5 @@
 import UsuarioRepository from "../repositories/UsuarioRepository.js"
+import bcrypt from 'bcrypt'
 
 class UsuarioController{
     async store(req, res){
@@ -27,7 +28,22 @@ class UsuarioController{
         }else{
           return res.status(500).send({ mensagem: "Usuario ja foi cadastrado"});
         }
-    
+    }
+
+
+    async login(req, res){
+      const usuario = req.body
+      const verify_user = await UsuarioRepository.verify(req.body.email)
+      
+      if(verify_user == ''){
+        return res.status(401).send({mensagem: "Falha na autenticação"})
+      }else{
+        bcrypt.compare(req.body.senha, verify_user[0].senha, (erro, resposta) => {
+          if(erro) return res.status(401).send({ mensagem: "Falha na autenticação" });
+          if(resposta) return res.status(200).send({ mensagem: "Autenticado com sucesso" });
+          return res.status(401).send({ mensagem: "Falha na autenticação" });
+        })
+      }
     }
 }
 
