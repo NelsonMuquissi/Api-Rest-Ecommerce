@@ -1,13 +1,16 @@
 import mysql from 'mysql2'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 
 
 const conexao = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "",
+  user: process.env.user,
+  host: process.env.host,
+  password: process.env.password,
   // "port": "",
-  database: "ecommerce"
+  database: process.env.database
 });
 
 conexao.connect((error) => {
