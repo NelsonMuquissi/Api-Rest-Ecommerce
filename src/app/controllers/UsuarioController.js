@@ -1,5 +1,9 @@
 import UsuarioRepository from "../repositories/UsuarioRepository.js"
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 class UsuarioController{
     async store(req, res){
@@ -40,7 +44,18 @@ class UsuarioController{
       }else{
         bcrypt.compare(req.body.senha, verify_user[0].senha, (erro, resposta) => {
           if(erro) return res.status(401).send({ mensagem: "Falha na autenticação" });
-          if(resposta) return res.status(200).send({ mensagem: "Autenticado com sucesso" });
+          if(resposta){ 
+            const token = jwt.sign({
+              id_usuario: resposta.id_usuario,
+              email: resposta.email
+            },
+             process.env.jwt_key,
+              { 
+                expiresIn: '1h'
+              }
+          )
+            return res.status(200).send({ mensagem: "Autenticado com sucesso", Token: token });
+          }
           return res.status(401).send({ mensagem: "Falha na autenticação" });
         })
       }

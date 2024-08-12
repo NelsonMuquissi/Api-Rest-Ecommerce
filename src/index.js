@@ -1,7 +1,8 @@
 import express from 'express'
 import router from './routes/routes.js'
+// import dotenv from 'dotenv';
 
-// Iiniciando o espress
+// Iniciando o espress
 const app = express()
 
 

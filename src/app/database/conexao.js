@@ -1,12 +1,14 @@
 import mysql from 'mysql2'
 
+
+
 const conexao = mysql.createConnection({
-    "user": "root",
-    "host": "localhost",
-    "password": "",
-    // "port": "",
-    "database": "ecommerce"
-})
+  user: "root",
+  host: "localhost",
+  password: "",
+  // "port": "",
+  database: "ecommerce"
+});
 
 conexao.connect((error) => {
   if (error) return console.log("Falha ao conectar-se");

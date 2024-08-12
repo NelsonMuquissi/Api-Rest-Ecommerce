@@ -4,6 +4,7 @@ import app from '../index.js'
 import PedidoController from "../app/controllers/PedidoController.js";
 import multer from "multer";
 import ControllerUsuario from "../app/controllers/UsuarioController.js";
+import login from '../../middleware/login.js'
 
 
 const filefilter = (req, file, cb) => {
@@ -42,7 +43,7 @@ const router = Router()
 //Rotas dos Produtos
 router.get('/produto', ProdutoController.index)
 router.get("/produto/:id", ProdutoController.show);
-router.post("/produto", upload.single('imagem_produto'), ProdutoController.store);
+router.post("/produto", upload.single('imagem_produto'),login , ProdutoController.store);
 router.put("/produto/:id", ProdutoController.updade);
 router.delete("/produto/:id", ProdutoController.delete);
 
