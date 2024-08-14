@@ -1,12 +1,12 @@
-# E-commerce API - README
+# E-commerce API
 
   **Esta API simples é um exemplo de como construir um backend para um e-commerce utilizando boas práticas de desenvolvimento.
   A API fornece funcionalidades básicas para gerenciar produtos, pedidos, usuários e controle de acesso**.
 
 ## Tecnologias
-  **Linguagem**: JavaScript(Node.JS)
-  **Framework**: Express.js
-  **Banco de dados**: MySql
+   - **Linguagem**: JavaScript(Node.JS)
+   - **Framework**: Express.js
+   - **Banco de dados**: MySql
 
 ## Instalação e Execução
 
